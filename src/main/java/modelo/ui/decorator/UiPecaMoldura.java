@@ -30,17 +30,23 @@ public class UiPecaMoldura extends UiPecaDecorator {
 		Label vida = new Label(String.valueOf(peca.getVida()));
 		vida.setStyle("-fx-font: 20 calibri;" +
 				      "-fx-font-weight: bold;" +
-		              "-fx-text-fill: black;");
+				      "-fx-fill: black;" +
+		              "-fx-padding: 0 0 0 6px;");
 		
-//		Label ataque = new Label(String.valueOf(peca.getAtaque()));
-//		ataque.setStyle("-fx-font: 18 calibri");
-//		
-//		Label valor = new Label(String.valueOf(peca.getValor()));
-//		valor.setStyle("-fx-font: 18 calibri");
+		Label ataque = new Label(String.valueOf(peca.getAtaque()));
+		ataque.setStyle("-fx-font: 20 calibri;" +
+			      "-fx-font-weight: bold;" +
+			      "-fx-fill: black;" +
+	              "-fx-padding: 0 0 0 64px;");
+		
+		Label valor = new Label(String.valueOf(peca.getValor()));
+		valor.setStyle("-fx-font: 20 calibri;" +
+			      "-fx-font-weight: bold;" +
+			      "-fx-fill: black;" +
+	              "-fx-padding: 56px 0 0 6px;");
 		
 		super.getChildren().add(moldura);
-//		super.getChildren().addAll(new Label[] {vida, ataque, valor});
-		super.getChildren().addAll(new Label[] {vida});
+		super.getChildren().addAll(new Label[] {vida, ataque, valor});
 	}
 
 }

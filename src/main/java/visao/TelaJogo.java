@@ -29,6 +29,8 @@ public class TelaJogo implements ObserverJogo {
 	private Button p1ReverseMove;
 	private Button p1PassarAvez;
 	private Button p1Arrancada;
+	private Label p1Selecionado;
+	private ImageView p1ImgSelecionado;
 	private VBox tabuleiro;
 	private VBox p2Box;
 	private Label p2Nome;
@@ -37,6 +39,8 @@ public class TelaJogo implements ObserverJogo {
 	private Button p2ReverseMove;
 	private Button p2PassarAvez;
 	private Button p2Arrancada;
+	private Label p2Selecionado;
+	private ImageView p2ImgSelecionado; 
 	private Group grupoCasa;
     private Group grupoPeca;
     
@@ -88,16 +92,22 @@ public class TelaJogo implements ObserverJogo {
 		
 		this.p1Arrancada = new Button("Arrancada");
 		this.p1Arrancada.setStyle(btnStyle);
-		
+				
 		this.p1BtnBox.getChildren().add(this.p1PassarAvez);
 		this.p1BtnBox.getChildren().add(this.p1ReverseMove);
 		this.p1BtnBox.getChildren().add(this.p1Arrancada);
+		
+		this.p1Selecionado = new Label("Peça Selecionada");
+		this.p1Selecionado.setStyle(txtStyle);
+		
+		this.p1ImgSelecionado = new ImageView();
 		
 		
 		this.p1Box.getChildren().add(this.p1Nome);
 		this.p1Box.getChildren().add(this.p1Pontos);
 		this.p1Box.getChildren().add(this.p1BtnBox);
-
+		this.p1Box.getChildren().add(this.p1Selecionado);
+		this.p1Box.getChildren().add(this.p1ImgSelecionado);
 
 		//Box do tabuleiro, no centro
 		this.tabuleiro = new VBox();
@@ -180,6 +190,14 @@ public class TelaJogo implements ObserverJogo {
 	public void setAcaoBtnp1ReverseMove(EventHandler<Event> acao) {
 		this.p1ReverseMove.setOnMouseClicked(acao);
 		this.p2ReverseMove.setOnMouseClicked(acao);
+	}
+	
+	public void setImageP1Selecao(Image img) {
+		this.p1ImgSelecionado.setImage(img);
+	}
+	
+	public void setImageP2Selecao(Image img) {
+		this.p2ImgSelecionado.setImage(img);
 	}
 
 	@Override

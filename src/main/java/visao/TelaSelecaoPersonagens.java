@@ -40,6 +40,7 @@ public class TelaSelecaoPersonagens extends VBox implements ObserverSelecaoPerso
 	private Label p2Lbl;
 	private TextField p2Inp;
 	private HBox personagensBox;
+	private ImageView personagensLegenda;
 	private GridPane personagensGrid;
 	private HBox escolhasBox;
 	private Label lblEscolhas;
@@ -113,7 +114,12 @@ public class TelaSelecaoPersonagens extends VBox implements ObserverSelecaoPerso
 		          		             "-fx-border-color: gray;\n" +
 		          		             "-fx-border-width: 0 0 1px 0;\n" +
 		          		             "-fx-border-style: solid;\n");			
+
+		this.personagensLegenda = new ImageView(new Image(new File("recursos/imagens/Legenda.png").toURI().toString()));
+		this.personagensLegenda.setFitHeight(size);
+		this.personagensLegenda.setFitWidth(size);
 		
+		this.personagensBox.getChildren().add(this.personagensLegenda);
 		this.personagensBox.getChildren().add(this.personagensGrid);
 		
 		this.escolhasBox = new HBox();
