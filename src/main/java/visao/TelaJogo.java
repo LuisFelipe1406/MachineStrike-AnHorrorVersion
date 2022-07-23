@@ -15,6 +15,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import modelo.ui.decorator.UiPecaBase;
+import modelo.ui.decorator.UiPecaMoldura;
 
 public class TelaJogo implements ObserverJogo {
 
@@ -30,7 +32,7 @@ public class TelaJogo implements ObserverJogo {
 	private Button p1PassarAvez;
 	private Button p1Arrancada;
 	private Label p1Selecionado;
-	private ImageView p1ImgSelecionado;
+	private UiPecaBase p1ImgSelecionado;
 	private VBox tabuleiro;
 	private VBox p2Box;
 	private Label p2Nome;
@@ -40,7 +42,7 @@ public class TelaJogo implements ObserverJogo {
 	private Button p2PassarAvez;
 	private Button p2Arrancada;
 	private Label p2Selecionado;
-	private ImageView p2ImgSelecionado; 
+	private UiPecaBase p2ImgSelecionado; 
 	private Group grupoCasa;
     private Group grupoPeca;
     
@@ -98,16 +100,14 @@ public class TelaJogo implements ObserverJogo {
 		this.p1BtnBox.getChildren().add(this.p1Arrancada);
 		
 		this.p1Selecionado = new Label("Peça Selecionada");
-		this.p1Selecionado.setStyle(txtStyle);
-		
-		this.p1ImgSelecionado = new ImageView();
-		
+		this.p1Selecionado.setStyle("-fx-padding: 40px 0 30px 0;" +
+									"-fx-font-size: 28 calibri;" +
+                					"-fx-font-weight: bold;");		
 		
 		this.p1Box.getChildren().add(this.p1Nome);
 		this.p1Box.getChildren().add(this.p1Pontos);
 		this.p1Box.getChildren().add(this.p1BtnBox);
 		this.p1Box.getChildren().add(this.p1Selecionado);
-		this.p1Box.getChildren().add(this.p1ImgSelecionado);
 
 		//Box do tabuleiro, no centro
 		this.tabuleiro = new VBox();
@@ -143,9 +143,15 @@ public class TelaJogo implements ObserverJogo {
 		this.p2BtnBox.getChildren().add(this.p2ReverseMove);
 		this.p2BtnBox.getChildren().add(this.p2Arrancada);
 		
+		this.p2Selecionado = new Label("Peça Selecionada");
+		this.p2Selecionado.setStyle("-fx-padding: 40px 0 30px 0;" +
+									"-fx-font-size: 28 calibri;" +
+									"-fx-font-weight: bold;");		
+		
 		this.p2Box.getChildren().add(this.p2Nome);
 		this.p2Box.getChildren().add(this.p2Pontos);
 		this.p2Box.getChildren().add(this.p2BtnBox);
+		this.p2Box.getChildren().add(this.p2Selecionado);
 		
 		this.grupoCasa.getChildren().add(grupoPeca);
 		this.tabuleiro.getChildren().add(grupoCasa);
@@ -158,7 +164,7 @@ public class TelaJogo implements ObserverJogo {
 	}
 	
 	public int getSize() {
-		return (this.size);
+		return this.size;
 	}
 	
 	public Group getGrupoCasa() {
@@ -177,8 +183,11 @@ public class TelaJogo implements ObserverJogo {
 		return this.p2Nome;
 	}
 	
-	public void setAcaoBtnPassarAVez(EventHandler<Event> acao) {
+	public void setAcaoBtnPassarAVezP1(EventHandler<Event> acao) {
 		this.p1PassarAvez.setOnMouseClicked(acao);
+	}
+	
+	public void setAcaoBtnPassarAVezP2(EventHandler<Event> acao) {
 		this.p2PassarAvez.setOnMouseClicked(acao);
 	}
 	
@@ -190,14 +199,6 @@ public class TelaJogo implements ObserverJogo {
 	public void setAcaoBtnp1ReverseMove(EventHandler<Event> acao) {
 		this.p1ReverseMove.setOnMouseClicked(acao);
 		this.p2ReverseMove.setOnMouseClicked(acao);
-	}
-	
-	public void setImageP1Selecao(Image img) {
-		this.p1ImgSelecionado.setImage(img);
-	}
-	
-	public void setImageP2Selecao(Image img) {
-		this.p2ImgSelecionado.setImage(img);
 	}
 
 	@Override
@@ -242,6 +243,33 @@ public class TelaJogo implements ObserverJogo {
 		this.p2ReverseMove.setDisable(true);
 		this.p2PassarAvez.setDisable(false);
 		this.p2Arrancada.setDisable(false);
+	}
+
+	@Override
+	public void p1Selecao(UiPecaBase peca) {
+		if (this.p1Box.getChildren().size() == 5) {
+			this.p1Box.getChildren().remove(4);
+		}
+		
+		this.p1Box.getChildren().add(peca);
+	}
+
+	@Override
+	public void p2Selecao(UiPecaBase peca) {
+		if (this.p2Box.getChildren().size() == 5) {
+			this.p2Box.getChildren().remove(4);
+		}
+		
+		this.p2Box.getChildren().add(peca);
+	}
+
+	@Override
+	public void atualizarVidaP1(Image img) {
+		this.p1Pontos.setImage(img);
+	}
+	
+	public void atualizarVidaP2(Image img) {
+		this.p2Pontos.setImage(img);
 	}	
 	
 }

@@ -1,5 +1,6 @@
 package controle;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +12,7 @@ import controle.visitor.JogadorPreparaPecasVisitor;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import modelo.ui.*;
 import modelo.Jogador;
@@ -37,11 +39,11 @@ public class ControladorJogo {
 		geraPecas();
 		
 		iniciarTela();
+		this.addObservador(telaJogo);
 		
 		preparaPlayers();
 		acoesBotoes();
 		
-		this.addObservador(telaJogo);
 		this.estado = new TurnoMovP1(this);
 	}
 	
@@ -65,20 +67,39 @@ public class ControladorJogo {
 	}
 	
 	public void preparaPlayers() {
-		this.telaJogo.getP1Nome().setText(this.jogo.getJogadores().get(0).getNome());
+		Jogador p1 = this.jogo.getJogadores().get(0);
+		Jogador p2 = this.jogo.getJogadores().get(1);
 		
-		this.telaJogo.getP2Nome().setText(this.jogo.getJogadores().get(1).getNome());
+		this.telaJogo.getP1Nome().setText(p1.getNome());		
+		this.telaJogo.getP2Nome().setText(p2.getNome());
+		
+		for (ObserverJogo obs : this.observadores) {
+			obs.atualizarVidaP1(new Image(new File("recursos/imagens/vida/" + p1.getPontos() + " vidas.png").toURI().toString()));
+			obs.atualizarVidaP2(new Image(new File("recursos/imagens/vida/" + p2.getPontos() + " vidas.png").toURI().toString()));
+		}
 	}
 	
 	public void acoesBotoes() {
-		this.telaJogo.setAcaoBtnPassarAVez(new EventHandler<Event>() {
+		this.telaJogo.setAcaoBtnPassarAVezP1(new EventHandler<Event>() {
 
 			@Override
 			public void handle(Event event) {
 				limparPecas();
 				limparCasas();
 				
-				passarAVez();
+				setEstado(new TurnoMovP2(ControladorJogo.this));
+			}
+			
+		});
+		
+		this.telaJogo.setAcaoBtnPassarAVezP2(new EventHandler<Event>() {
+
+			@Override
+			public void handle(Event event) {
+				limparPecas();
+				limparCasas();
+				
+				setEstado(new TurnoMovP2(ControladorJogo.this));
 			}
 			
 		});
@@ -176,6 +197,31 @@ public class ControladorJogo {
 		return false;
 	}
 	
+	public void verificaMortos() {
+		Jogador p1 = this.jogo.getJogadores().get(0);
+		Jogador p2 = this.jogo.getJogadores().get(1);
+		
+		for (UiPeca uiPeca : this.jogo.getPersonagensJogo()) {
+			//Se a vida do player for zero
+			if (uiPeca.getPeca().getVida() <= 0) {
+				this.telaJogo.getGrupoPeca().getChildren().remove(uiPeca);
+				
+				if (p1.getPecas().contains(uiPeca.getPeca())) {
+					p1.removePonto();
+				}
+				
+				if (p2.getPecas().contains(uiPeca.getPeca())) {
+					p2.removePonto();
+				}
+			}
+		}
+		
+		for (ObserverJogo obs : this.observadores) {
+			obs.atualizarVidaP1(new Image(new File("recursos/imagens/vida/" + p1.getPontos() + " vidas.png").toURI().toString()));
+			obs.atualizarVidaP2(new Image(new File("recursos/imagens/vida/" + p2.getPontos() + " vidas.png").toURI().toString()));
+		}
+	}
+	
 	public void setEstado(TurnoEstado estado) {
 		this.estado = estado;
 	}
@@ -186,12 +232,6 @@ public class ControladorJogo {
 	
 	public void proxEstado() {
 		this.estado.proxEstado();
-		
-		System.out.println(this.estado);
-	}
-	
-	public void passarAVez() {
-		this.proxEstado();
 	}
 	
 	public void setContMov(int cont) {

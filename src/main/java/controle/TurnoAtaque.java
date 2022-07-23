@@ -2,6 +2,7 @@ package controle;
 
 import controle.command.AtacarCommand;
 import controle.command.MoverCommand;
+import controle.observer.ObserverJogo;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import modelo.ui.UiCasa;
@@ -33,40 +34,6 @@ public abstract class TurnoAtaque extends TurnoEstado {
 			@Override
 			public void handle(Event event) {
 												
-			}
-			
-		};
-		
-		return evento;
-	}
-	
-	public EventHandler<Event> acoesPecaAtk(UiPeca uiPeca) {
-		EventHandler<Event> evento = new EventHandler<Event>() {
-
-			@Override
-			public void handle(Event event) {
-				jogo.limparPecas();
-				jogo.limparCasas();
-				
-				uiPeca.trocarEstado();
-				
-				ataquesPossiveis(uiPeca);
-			}
-			
-		};
-		
-		return evento;
-	}
-	
-	public EventHandler<Event> acoesPecaDef(UiPeca uiPeca) {
-		EventHandler<Event> evento = new EventHandler<Event>() {
-
-			@Override
-			public void handle(Event event) {
-				jogo.getCi().execute(new AtacarCommand(uiPeca));
-				
-				jogo.limparPecas();
-				jogo.limparCasas();			
 			}
 			
 		};

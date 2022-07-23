@@ -68,7 +68,6 @@ public class ControladorSelecaoPersonagem {
 		for (int i = 0; i < gerarPersonagens().size(); i++) {
 			Peca personagem = gerarPersonagens().get(i);
 			UiPecaBase uiSelecao = new UiPecaMoldura(personagem, this.telaSelecao.getSize(), new UiPeca(personagem, this.telaSelecao.getSize()));
-//			UiPecaBase uiSelecao = new UiPeca(personagem, this.telaSelecao.getSize());
 			
 			//Adiciona o nó a lista de personagens
 			this.jogo.addPersonagemSelecao(uiSelecao);
@@ -113,7 +112,7 @@ public class ControladorSelecaoPersonagem {
 			public void handle(Event event) {
 				if (escolhasRestantes() >= 0) {
 					Jogador player1 = new Jogador1(telaSelecao.getNomeP1());
-					player1.addPeca(getPecasSelecionadas());		
+					player1.addPeca(getPecasSelecionadas());
 					
 					jogo.addJogador(player1);
 					limparSelecao();

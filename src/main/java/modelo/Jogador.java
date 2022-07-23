@@ -14,7 +14,7 @@ public abstract class Jogador {
 	
 	public Jogador(String nome) {
 		this.nome = nome;
-		this.pontos = 0;
+		this.pontos = 0;		
 		this.conjunto = new ArrayList<Peca>();
 	}
 	
@@ -24,6 +24,10 @@ public abstract class Jogador {
 	
 	public void addPonto() {
 		this.pontos++;
+	}
+	
+	public void removePonto() {
+		this.pontos = (this.pontos - 1);
 	}
 	
 	public void zerarPontos() {
@@ -37,10 +41,12 @@ public abstract class Jogador {
 	public void addPeca(Peca peca) {
 		Peca p = peca;
 		this.conjunto.add(p);
+		this.pontos++;
 	}
 	
 	public void addPeca(List<Peca> pecas) {
 		this.conjunto = pecas;
+		this.pontos = pecas.size();
 	}
 	
 	public List<Peca> getPecas() {

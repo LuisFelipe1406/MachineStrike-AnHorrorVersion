@@ -2,11 +2,14 @@ package controle;
 
 import controle.command.CommandInvoker;
 import controle.command.MoverCommand;
+import controle.observer.ObserverJogo;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import modelo.tabuleiro.terreno.Terreno;
 import modelo.ui.UiCasa;
 import modelo.ui.UiPeca;
+import modelo.ui.decorator.UiPecaBase;
+import modelo.ui.decorator.UiPecaMoldura;
 
 public abstract class TurnoMovimento extends TurnoEstado {
 	
@@ -34,34 +37,7 @@ public abstract class TurnoMovimento extends TurnoEstado {
 
 			@Override
 			public void handle(Event event) {
-				jogo.getCi().execute(new MoverCommand(uiCasa));
-				
-				jogo.limparPecas();
-				jogo.limparCasas();
-				
-				if (jogo.getContMov() == 2) {
-					proxEstado();
-					
-					jogo.resetContMov();
-				}
-			}
-			
-		};
-		
-		return evento;
-	}
-	
-	public EventHandler<Event> acoesPeca(UiPeca uiPeca) {
-		EventHandler<Event> evento = new EventHandler<Event>() {
-
-			@Override
-			public void handle(Event event) {
-				jogo.limparPecas();
-				jogo.limparCasas();
-				
-				uiPeca.trocarEstado();
-				
-				movimentosPossiveis(uiPeca);
+				jogo.getCi().execute(new MoverCommand(jogo, uiCasa));
 			}
 			
 		};

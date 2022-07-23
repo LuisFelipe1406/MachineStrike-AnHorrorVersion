@@ -14,7 +14,7 @@ public class Jogo {
 	//Singleton guardando os dados importantes para o jogo
 	
 	private static Jogo instance;                                                                            //Instância do Singleton
-	private static int pecasPorJogador = 6;                                                                  //Limite de pecas por jogador
+	private static int pecasPorJogador = 7;                                                                  //Limite de pecas por jogador
 	private static List<UiPecaBase> personagensSelecao = new ArrayList<UiPecaBase>();                        //Personagens na tela de seleção
 	private static List<UiSelecaoTabuleiro> tabuleirosSelecao = new ArrayList<UiSelecaoTabuleiro>();         //Personagens na tela de seleção
 	private static List<UiPeca> personagensJogo = new ArrayList<UiPeca>();                                   //Personagens na tela do jogo
