@@ -1,4 +1,5 @@
 controle\adapter\ArquivoTerrenoTxt.class
+controle\TurnoFimDeJogo$2.class
 controle\factory\AbstractTabuleiroFactory.class
 modelo\ui\UiPecaSelecionada.class
 modelo\pecas\PecaEstadoSelecionada.class
@@ -64,6 +65,7 @@ controle\TurnoAtkP2$1.class
 modelo\ui\UiPecaNaoSelecionada.class
 modelo\pecas\PecaCoringa.class
 modelo\tipos\TipoVoador.class
+controle\TurnoFimDeJogo$1.class
 modelo\pecas\PecaEstadoNaoSelecionada.class
 modelo\tabuleiro\terreno\TerrenoFloresta.class
 controle\TurnoEstado.class
@@ -85,7 +87,9 @@ controle\ControladorSelecaoPersonagem$4.class
 modelo\pecas\PecaJigsaw.class
 controle\command\Command.class
 modelo\tipos\TipoAtirador.class
+controle\ControladorJogo$4.class
 modelo\ui\UiCasaSelecionada.class
+controle\TurnoFimDeJogo.class
 modelo\Jogador1.class
 modelo\tabuleiro\TabuleiroRandom.class
 modelo\pecas\PecaMichaelMyers.class

@@ -99,7 +99,7 @@ public class ControladorJogo {
 				limparPecas();
 				limparCasas();
 				
-				setEstado(new TurnoMovP2(ControladorJogo.this));
+				setEstado(new TurnoMovP1(ControladorJogo.this));
 			}
 			
 		});
@@ -197,28 +197,45 @@ public class ControladorJogo {
 		return false;
 	}
 	
-	public void verificaMortos() {
-		Jogador p1 = this.jogo.getJogadores().get(0);
-		Jogador p2 = this.jogo.getJogadores().get(1);
-		
-		for (UiPeca uiPeca : this.jogo.getPersonagensJogo()) {
-			//Se a vida do player for zero
-			if (uiPeca.getPeca().getVida() <= 0) {
-				this.telaJogo.getGrupoPeca().getChildren().remove(uiPeca);
-				
-				if (p1.getPecas().contains(uiPeca.getPeca())) {
-					p1.removePonto();
-				}
-				
-				if (p2.getPecas().contains(uiPeca.getPeca())) {
-					p2.removePonto();
+	public void verificaMortos() {		
+		for (Jogador j : this.jogo.getJogadores()) {
+			for (UiPeca uiPeca : this.jogo.getPersonagensJogo()) {
+				//Se a vida da peca for zero
+				if (uiPeca.getPeca().getVida() <= 0) {
+					this.telaJogo.getGrupoPeca().getChildren().remove(uiPeca);
+					
+					if (j.getPecas().contains(uiPeca.getPeca())) {
+						j.removePonto();
+						removerPecaJogo(j, uiPeca);
+					}
 				}
 			}
+			
+			atualizarVida(j);
 		}
+	}
+	
+	public void removerPecaJogo(Jogador player, UiPeca remover) {
+		for (int i = 0; i < player.getPecas().size(); i++) {
+			Peca peca = player.getPecas().get(i);
+			
+			if (peca == remover.getPeca()) {
+				player.getPecas().remove(i);
+			}
+		} 
+	}
+	
+	public void atualizarVida(Jogador player) {
+		Image img = new Image(new File("recursos/imagens/vida/" + player.getPontos() + " vidas.png").toURI().toString());
 		
-		for (ObserverJogo obs : this.observadores) {
-			obs.atualizarVidaP1(new Image(new File("recursos/imagens/vida/" + p1.getPontos() + " vidas.png").toURI().toString()));
-			obs.atualizarVidaP2(new Image(new File("recursos/imagens/vida/" + p2.getPontos() + " vidas.png").toURI().toString()));
+		if (player == this.jogo.getJogadores().get(0)) {
+			for (ObserverJogo obs : this.observadores) {
+				obs.atualizarVidaP1(img);
+			}
+		} else {
+			for (ObserverJogo obs : this.observadores) {
+				obs.atualizarVidaP2(img);
+			}
 		}
 	}
 	

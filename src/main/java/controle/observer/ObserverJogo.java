@@ -1,24 +1,29 @@
 package controle.observer;
 
+import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import modelo.ui.decorator.UiPecaBase;
 
 public interface ObserverJogo {
 
-	public void p1Move();
+	void p1Move();
 	
-	public void p1Atk();
+	void p1Atk();
 	
-	public void p2Move();
+	void p2Move();
 	
-	public void p2Atk();
+	void p2Atk();
 	
-	public void p1Selecao(UiPecaBase peca);
+	void fimDeJogo();
 	
-	public void p2Selecao(UiPecaBase peca);
+	void p1Selecao(UiPecaBase peca);
 	
-	public void atualizarVidaP1(Image img);
+	void p2Selecao(UiPecaBase peca);
 	
-	public void atualizarVidaP2(Image img);
+	void atualizarVidaP1(Image img);
+	
+	void atualizarVidaP2(Image img);
+	
+	void exibirAlerta(Alert alerta);
 	
 }

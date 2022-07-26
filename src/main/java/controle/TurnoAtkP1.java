@@ -17,6 +17,7 @@ public class TurnoAtkP1 extends TurnoAtaque {
 		
 		for (ObserverJogo obs : jogo.getObservadores()) {
 			obs.p1Atk();
+			obs.exibirAlerta(gerarAlerta("Player 1 | Turno de Ataque"));
 		}
 		
 		acoesPecas();

@@ -8,6 +8,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -270,6 +271,22 @@ public class TelaJogo implements ObserverJogo {
 	
 	public void atualizarVidaP2(Image img) {
 		this.p2Pontos.setImage(img);
+	}
+
+	@Override
+	public void fimDeJogo() {
+		this.p1ReverseMove.setDisable(false);
+		this.p1PassarAvez.setDisable(false);
+		this.p1Arrancada.setDisable(false);
+		
+		this.p2ReverseMove.setDisable(false);
+		this.p2PassarAvez.setDisable(false);
+		this.p2Arrancada.setDisable(false);
+	}
+
+	@Override
+	public void exibirAlerta(Alert alerta) {
+		alerta.showAndWait();
 	}	
 	
 }

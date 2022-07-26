@@ -16,6 +16,7 @@ public class TurnoAtkP2 extends TurnoAtaque {
 		
 		for (ObserverJogo obs : jogo.getObservadores()) {
 			obs.p2Atk();
+			obs.exibirAlerta(gerarAlerta("Player 2 | Turno de Ataque"));
 		}
 		
 		acoesPecas();
@@ -33,7 +34,7 @@ public class TurnoAtkP2 extends TurnoAtaque {
 		
 		for (UiPeca uiPeca : this.jogo.getJogo().getPersonagensJogo()) {
 			//Somente as pecas do player 1
-			if (this.jogo.getJogo().getJogadores().get(1).getPecas().contains(uiPeca.getPeca())) {				
+			if (this.jogo.getJogo().getJogadores().get(0).getPecas().contains(uiPeca.getPeca())) {				
 				//Definir acao da peca
 				uiPeca.setOnMouseClicked(acoesPecaDef(uiPeca));
 			}

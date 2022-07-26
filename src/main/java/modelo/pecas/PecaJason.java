@@ -10,7 +10,7 @@ import modelo.tipos.TipoCorredor;
 public class PecaJason extends Peca {
 
 	public PecaJason(int x, int y) {
-		super("Jason", new TipoCorpo(), 3, 3, 2, 4, 2, new int[]{x, y});
+		super("Jason", new TipoCorpo(), 3, 1, 2, 4, 2, new int[]{x, y});
 	}
 	
 	@Override

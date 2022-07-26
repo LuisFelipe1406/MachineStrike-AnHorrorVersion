@@ -15,6 +15,7 @@ public class TurnoMovP2 extends TurnoMovimento {
 		
 		for (ObserverJogo obs : jogo.getObservadores()) {
 			obs.p2Move();
+			obs.exibirAlerta(gerarAlerta("Player 2 | Turno de Movimento"));
 		}
 		
 		this.jogo.setContMov(0);
