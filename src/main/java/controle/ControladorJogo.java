@@ -6,12 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import controle.command.CommandInvoker;
-import controle.command.MoverCommand;
 import controle.observer.ObserverJogo;
+import controle.visitor.JogadorAtualizaVidaVisitor;
 import controle.visitor.JogadorPreparaPecasVisitor;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import modelo.ui.*;
@@ -103,17 +104,7 @@ public class ControladorJogo {
 			}
 			
 		});
-		
-		this.telaJogo.setAcaoBtnArrancada(new EventHandler<Event>() {
-
-			@Override
-			public void handle(Event event) {
-				// TODO Auto-generated method stub
 				
-			}
-			
-		});
-		
 		this.telaJogo.setAcaoBtnp1ReverseMove(new EventHandler<Event>() {
 
 			@Override
@@ -133,6 +124,7 @@ public class ControladorJogo {
 			for(int y = 0; y < 8; y++) {
 				Terreno terreno = tab.getCasas()[x][y]; 
 				UiCasa casa;
+				
 				casa = new UiCasa(terreno, x, y, this.telaJogo.getSize());
 				
 				//Adiciona casa na nossa lista para manipulacao futura
@@ -187,9 +179,11 @@ public class ControladorJogo {
 		return null;
 	}
 	
-	public boolean temPecaAqui(UiCasa casa) {
-		for (UiPeca uiPeca : this.jogo.getPersonagensJogo()) {			
-			if (uiPeca.getPeca().getPosicao()[0] == casa.getPosicao()[0] && uiPeca.getPeca().getPosicao()[1] == casa.getPosicao()[1]) {
+	public boolean temPecaAquiP1(UiCasa casa) {
+		Jogador j = this.jogo.getJogadores().get(0);
+
+		for (Peca peca : j.getPecas()) {			
+			if (peca.getPosicao()[0] == casa.getPosicao()[0] && peca.getPosicao()[1] == casa.getPosicao()[1]) {
 				return true;
 			}
 		}
@@ -197,8 +191,22 @@ public class ControladorJogo {
 		return false;
 	}
 	
-	public void verificaMortos() {		
+	public boolean temPecaAquiP2(UiCasa casa) {
+		Jogador j = this.jogo.getJogadores().get(1);
+
+		for (Peca peca : j.getPecas()) {			
+			if (peca.getPosicao()[0] == casa.getPosicao()[0] && peca.getPosicao()[1] == casa.getPosicao()[1]) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	public void verificaMortos() {
+		//Percorre os jogadores
 		for (Jogador j : this.jogo.getJogadores()) {
+			//Percorre as pecas
 			for (UiPeca uiPeca : this.jogo.getPersonagensJogo()) {
 				//Se a vida da peca for zero
 				if (uiPeca.getPeca().getVida() <= 0) {
@@ -211,11 +219,13 @@ public class ControladorJogo {
 				}
 			}
 			
+			//Atualiza vida do jogador
 			atualizarVida(j);
 		}
 	}
 	
 	public void removerPecaJogo(Jogador player, UiPeca remover) {
+		//Tira a peca do jogador quando ele morrer
 		for (int i = 0; i < player.getPecas().size(); i++) {
 			Peca peca = player.getPecas().get(i);
 			
@@ -226,17 +236,9 @@ public class ControladorJogo {
 	}
 	
 	public void atualizarVida(Jogador player) {
-		Image img = new Image(new File("recursos/imagens/vida/" + player.getPontos() + " vidas.png").toURI().toString());
+		JogadorAtualizaVidaVisitor atualizaVidaVisitor = new JogadorAtualizaVidaVisitor(this);
 		
-		if (player == this.jogo.getJogadores().get(0)) {
-			for (ObserverJogo obs : this.observadores) {
-				obs.atualizarVidaP1(img);
-			}
-		} else {
-			for (ObserverJogo obs : this.observadores) {
-				obs.atualizarVidaP2(img);
-			}
-		}
+		player.accept(atualizaVidaVisitor);
 	}
 	
 	public void setEstado(TurnoEstado estado) {
@@ -269,6 +271,14 @@ public class ControladorJogo {
 	
 	public CommandInvoker getCi() {
 		return this.ci;
+	}
+	
+	public Alert gerarAlerta(String texto) {
+		Alert dialogoInfo = new Alert(Alert.AlertType.INFORMATION);
+        dialogoInfo.setTitle("Instrução");
+        dialogoInfo.setContentText(texto);
+        
+        return dialogoInfo;
 	}
 	
 }

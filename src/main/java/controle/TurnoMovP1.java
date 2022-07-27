@@ -4,11 +4,9 @@ import controle.command.MoverCommand;
 import controle.observer.ObserverJogo;
 import javafx.event.Event;
 import javafx.event.EventHandler;
-import modelo.pecas.Peca;
 import modelo.ui.UiCasa;
 import modelo.ui.UiPeca;
 import modelo.ui.decorator.UiPecaBase;
-import modelo.ui.decorator.UiPecaMoldura;
 import modelo.ui.decorator.UiPecaMolduraBorda;
 
 public class TurnoMovP1 extends TurnoMovimento {
@@ -18,7 +16,6 @@ public class TurnoMovP1 extends TurnoMovimento {
 		
 		for (ObserverJogo obs : jogo.getObservadores()) {
 			obs.p1Move();
-			obs.exibirAlerta(gerarAlerta("Player 1 | Turno de Movimento"));
 		}
 		
 		acoesPecas();
@@ -67,6 +64,19 @@ public class TurnoMovP1 extends TurnoMovimento {
 		return evento;
 	}
 	
+	public EventHandler<Event> acoesCasa(UiCasa uiCasa) {
+		EventHandler<Event> evento = new EventHandler<Event>() {
+
+			@Override
+			public void handle(Event event) {
+				jogo.getCi().execute(new MoverCommand(jogo, uiCasa));
+			}
+			
+		};
+		
+		return evento;
+	}
+	
 	@Override
 	public void proxEstado() {
 		jogo.setEstado(new TurnoAtkP1(jogo));
@@ -78,7 +88,7 @@ public class TurnoMovP1 extends TurnoMovimento {
 	}
 
 	public String toString() {
-		return "Player 1 | Movimento";
+		return "Player 1 | Turno de Movimento";
 	}
 	
 }

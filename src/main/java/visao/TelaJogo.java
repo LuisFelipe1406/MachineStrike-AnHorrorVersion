@@ -17,7 +17,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import modelo.ui.decorator.UiPecaBase;
-import modelo.ui.decorator.UiPecaMoldura;
 
 public class TelaJogo implements ObserverJogo {
 
@@ -31,7 +30,6 @@ public class TelaJogo implements ObserverJogo {
 	private VBox p1BtnBox;
 	private Button p1ReverseMove;
 	private Button p1PassarAvez;
-	private Button p1Arrancada;
 	private Label p1Selecionado;
 	private UiPecaBase p1ImgSelecionado;
 	private VBox tabuleiro;
@@ -41,7 +39,6 @@ public class TelaJogo implements ObserverJogo {
 	private VBox p2BtnBox;
 	private Button p2ReverseMove;
 	private Button p2PassarAvez;
-	private Button p2Arrancada;
 	private Label p2Selecionado;
 	private UiPecaBase p2ImgSelecionado; 
 	private Group grupoCasa;
@@ -92,13 +89,9 @@ public class TelaJogo implements ObserverJogo {
 		
 		this.p1PassarAvez = new Button("Passar a Vez");
 		this.p1PassarAvez.setStyle(btnStyle);
-		
-		this.p1Arrancada = new Button("Arrancada");
-		this.p1Arrancada.setStyle(btnStyle);
 				
 		this.p1BtnBox.getChildren().add(this.p1PassarAvez);
 		this.p1BtnBox.getChildren().add(this.p1ReverseMove);
-		this.p1BtnBox.getChildren().add(this.p1Arrancada);
 		
 		this.p1Selecionado = new Label("Peça Selecionada");
 		this.p1Selecionado.setStyle("-fx-padding: 40px 0 30px 0;" +
@@ -137,12 +130,8 @@ public class TelaJogo implements ObserverJogo {
 		this.p2PassarAvez = new Button("Passar a Vez");
 		this.p2PassarAvez.setStyle(btnStyle);
 		
-		this.p2Arrancada = new Button("Arrancada");
-		this.p2Arrancada.setStyle(btnStyle);
-		
 		this.p2BtnBox.getChildren().add(this.p2PassarAvez);
 		this.p2BtnBox.getChildren().add(this.p2ReverseMove);
-		this.p2BtnBox.getChildren().add(this.p2Arrancada);
 		
 		this.p2Selecionado = new Label("Peça Selecionada");
 		this.p2Selecionado.setStyle("-fx-padding: 40px 0 30px 0;" +
@@ -192,11 +181,6 @@ public class TelaJogo implements ObserverJogo {
 		this.p2PassarAvez.setOnMouseClicked(acao);
 	}
 	
-	public void setAcaoBtnArrancada(EventHandler<Event> acao) {
-		this.p1Arrancada.setOnMouseClicked(acao);
-		this.p2Arrancada.setOnMouseClicked(acao);
-	}
-	
 	public void setAcaoBtnp1ReverseMove(EventHandler<Event> acao) {
 		this.p1ReverseMove.setOnMouseClicked(acao);
 		this.p2ReverseMove.setOnMouseClicked(acao);
@@ -206,44 +190,36 @@ public class TelaJogo implements ObserverJogo {
 	public void p1Move() {
 		this.p1ReverseMove.setDisable(false);
 		this.p1PassarAvez.setDisable(false);
-		this.p1Arrancada.setDisable(true);
 		
 		this.p2ReverseMove.setDisable(true);
 		this.p2PassarAvez.setDisable(true);
-		this.p2Arrancada.setDisable(true);
 	}
 	
 	@Override
 	public void p1Atk() {
 		this.p1ReverseMove.setDisable(true);
 		this.p1PassarAvez.setDisable(false);
-		this.p1Arrancada.setDisable(false);
 		
 		this.p2ReverseMove.setDisable(true);
 		this.p2PassarAvez.setDisable(true);
-		this.p2Arrancada.setDisable(true);
 	}	
 
 	@Override
 	public void p2Move() {
 		this.p1ReverseMove.setDisable(true);
 		this.p1PassarAvez.setDisable(true);
-		this.p1Arrancada.setDisable(true);
 		
 		this.p2ReverseMove.setDisable(false);
 		this.p2PassarAvez.setDisable(false);
-		this.p2Arrancada.setDisable(true);
 	}
 	
 	@Override
 	public void p2Atk() {
 		this.p1ReverseMove.setDisable(true);
 		this.p1PassarAvez.setDisable(true);
-		this.p1Arrancada.setDisable(true);
 		
 		this.p2ReverseMove.setDisable(true);
 		this.p2PassarAvez.setDisable(false);
-		this.p2Arrancada.setDisable(false);
 	}
 
 	@Override
@@ -275,13 +251,11 @@ public class TelaJogo implements ObserverJogo {
 
 	@Override
 	public void fimDeJogo() {
-		this.p1ReverseMove.setDisable(false);
-		this.p1PassarAvez.setDisable(false);
-		this.p1Arrancada.setDisable(false);
+		this.p1ReverseMove.setDisable(true);
+		this.p1PassarAvez.setDisable(true);
 		
-		this.p2ReverseMove.setDisable(false);
-		this.p2PassarAvez.setDisable(false);
-		this.p2Arrancada.setDisable(false);
+		this.p2ReverseMove.setDisable(true);
+		this.p2PassarAvez.setDisable(true);
 	}
 
 	@Override

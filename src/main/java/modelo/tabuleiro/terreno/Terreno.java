@@ -1,5 +1,7 @@
 package modelo.tabuleiro.terreno;
 
+import controle.visitor.PecaVisitor;
+import controle.visitor.TerrenoVisitor;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import modelo.pecas.Peca;
@@ -31,6 +33,6 @@ public abstract class Terreno {
 		return this.getNome();
 	}
 	
-	public abstract void pecaAqui(Peca peca);
+	public abstract void accept(TerrenoVisitor visitor);
 	
 }

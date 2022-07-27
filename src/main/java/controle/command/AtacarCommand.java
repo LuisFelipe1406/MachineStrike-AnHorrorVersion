@@ -1,14 +1,10 @@
 package controle.command;
 
 import controle.ControladorJogo;
-import controle.Jogo;
-import controle.observer.ObserverJogo;
 import modelo.ui.UiCasa;
 import modelo.ui.UiCasaSelecionada;
 import modelo.ui.UiPeca;
 import modelo.ui.UiPecaSelecionada;
-import modelo.ui.decorator.UiPecaBase;
-import modelo.ui.decorator.UiPecaMolduraBorda;
 
 public class AtacarCommand extends Command {
 
@@ -26,19 +22,24 @@ public class AtacarCommand extends Command {
 	public void execute() {
 		//Se a peça de ataque for nao nula e a peca de defesa estiver selecionada (for um ataque possivel)
 		if (this.pecaAtk != null && this.getCasaDef().getEstado().getClass() == UiCasaSelecionada.class) {
-			this.pecaDef.getPeca().setVida(this.pecaDef.getPeca().getVida() - this.pecaAtk.getPeca().getAtaque());
+			//A vida da peca apos sofrer o ataque
+			int vida = this.pecaDef.getPeca().getVida() - (this.pecaAtk.getPeca().getAtaque() + this.pecaAtk.getPeca().getBonus());
 			
+			//Controle para manter a vida sempre nao negativa
+			if (vida < 0) {
+				vida = 0;
+			}
+				
+			this.pecaDef.getPeca().setVida(vida);
+			
+			//Verifica se a peca morreu
 			jogo.verificaMortos();
 			
-			for (ObserverJogo obs : jogo.getObservadores()) {
-				UiPecaBase pecaMoldura = new UiPecaMolduraBorda(pecaDef.getPeca(), 80, pecaDef);
-				
-				obs.p2Selecao(pecaMoldura);
-			}
-			
+			//Limpa as casas para nova selecao
 			jogo.limparPecas();
 			jogo.limparCasas();
 			
+			//Atualiza o turno do jogo
 			jogo.proxEstado();
 		}
 	}

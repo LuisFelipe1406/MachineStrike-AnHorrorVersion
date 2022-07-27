@@ -1,15 +1,13 @@
 package controle;
 
-import controle.command.CommandInvoker;
 import controle.command.MoverCommand;
 import controle.observer.ObserverJogo;
 import javafx.event.Event;
 import javafx.event.EventHandler;
-import modelo.tabuleiro.terreno.Terreno;
 import modelo.ui.UiCasa;
 import modelo.ui.UiPeca;
 import modelo.ui.decorator.UiPecaBase;
-import modelo.ui.decorator.UiPecaMoldura;
+import modelo.ui.decorator.UiPecaMolduraBorda;
 
 public abstract class TurnoMovimento extends TurnoEstado {
 	

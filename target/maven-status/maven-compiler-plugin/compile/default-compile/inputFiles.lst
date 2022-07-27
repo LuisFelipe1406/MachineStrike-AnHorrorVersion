@@ -10,8 +10,10 @@ C:\Users\Luis\Documents\Faculdade\2022\22-01\PPR\Eclipse\MachineStrike\src\main\
 C:\Users\Luis\Documents\Faculdade\2022\22-01\PPR\Eclipse\MachineStrike\src\main\java\modelo\tabuleiro\TabuleiroRandom.java
 C:\Users\Luis\Documents\Faculdade\2022\22-01\PPR\Eclipse\MachineStrike\src\main\java\controle\adapter\ArquivoTerrenoJson.java
 C:\Users\Luis\Documents\Faculdade\2022\22-01\PPR\Eclipse\MachineStrike\src\main\java\modelo\tabuleiro\terreno\TerrenoMontanha.java
+C:\Users\Luis\Documents\Faculdade\2022\22-01\PPR\Eclipse\MachineStrike\src\main\java\controle\visitor\TerrenoVisitor.java
 C:\Users\Luis\Documents\Faculdade\2022\22-01\PPR\Eclipse\MachineStrike\src\main\java\modelo\pecas\PecaSerraEletrica.java
 C:\Users\Luis\Documents\Faculdade\2022\22-01\PPR\Eclipse\MachineStrike\src\main\java\modelo\tipos\TipoVoador.java
+C:\Users\Luis\Documents\Faculdade\2022\22-01\PPR\Eclipse\MachineStrike\src\main\java\controle\visitor\TerrenosCaminharVisitor.java
 C:\Users\Luis\Documents\Faculdade\2022\22-01\PPR\Eclipse\MachineStrike\src\main\java\modelo\pecas\PecaMichaelMyers.java
 C:\Users\Luis\Documents\Faculdade\2022\22-01\PPR\Eclipse\MachineStrike\src\main\java\modelo\pecas\PecaEstadoNaoSelecionada.java
 C:\Users\Luis\Documents\Faculdade\2022\22-01\PPR\Eclipse\MachineStrike\src\main\java\modelo\pecas\PecaMichaelJackson.java
@@ -22,6 +24,7 @@ C:\Users\Luis\Documents\Faculdade\2022\22-01\PPR\Eclipse\MachineStrike\src\main\
 C:\Users\Luis\Documents\Faculdade\2022\22-01\PPR\Eclipse\MachineStrike\src\main\java\modelo\ui\UiPecaSelecionada.java
 C:\Users\Luis\Documents\Faculdade\2022\22-01\PPR\Eclipse\MachineStrike\src\main\java\controle\ControladorSobreProjeto.java
 C:\Users\Luis\Documents\Faculdade\2022\22-01\PPR\Eclipse\MachineStrike\src\main\java\modelo\pecas\PecaEstado.java
+C:\Users\Luis\Documents\Faculdade\2022\22-01\PPR\Eclipse\MachineStrike\src\main\java\controle\visitor\JogadorAtualizaVidaVisitor.java
 C:\Users\Luis\Documents\Faculdade\2022\22-01\PPR\Eclipse\MachineStrike\src\main\java\controle\TurnoEstado.java
 C:\Users\Luis\Documents\Faculdade\2022\22-01\PPR\Eclipse\MachineStrike\src\main\java\controle\factory\AbstractTabuleiroFactory.java
 C:\Users\Luis\Documents\Faculdade\2022\22-01\PPR\Eclipse\MachineStrike\src\main\java\controle\ControladorSelecaoPersonagem.java

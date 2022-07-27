@@ -3,7 +3,6 @@ package controle;
 import java.util.ArrayList;
 import java.util.List;
 
-import controle.observer.ObserverJogo;
 import modelo.*;
 import modelo.ui.*;
 import modelo.ui.decorator.UiPecaBase;

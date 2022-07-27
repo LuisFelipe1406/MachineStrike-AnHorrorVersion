@@ -15,14 +15,7 @@ public class App extends Application {
 
 	@Override
 	public void start(Stage inicial) throws IOException  {	
-//		ControladorInicio controleInicio = new ControladorInicio(inicial);
-		
-//		Teste
-		Jogo jogo = Jogo.getInstance();
-		jogo.setTabuleiro(new TabuleiroRandomFactory().getTabuleiro());
-		
-		ControladorSelecaoPersonagem teste = new ControladorSelecaoPersonagem();
-		
+		ControladorInicio controleInicio = new ControladorInicio(inicial);
 	}
 	
 }

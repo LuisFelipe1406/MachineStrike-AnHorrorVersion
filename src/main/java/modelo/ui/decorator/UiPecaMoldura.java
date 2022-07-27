@@ -33,7 +33,7 @@ public class UiPecaMoldura extends UiPecaDecorator {
 				      "-fx-fill: black;" +
 		              "-fx-padding: 0 0 0 6px;");
 		
-		Label ataque = new Label(String.valueOf(peca.getAtaque()));
+		Label ataque = new Label(String.valueOf(peca.getAtaque() + peca.getBonus()));
 		ataque.setStyle("-fx-font: 20 calibri;" +
 			      "-fx-font-weight: bold;" +
 			      "-fx-fill: black;" +

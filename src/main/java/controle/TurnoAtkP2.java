@@ -4,9 +4,9 @@ import controle.command.AtacarCommand;
 import controle.observer.ObserverJogo;
 import javafx.event.Event;
 import javafx.event.EventHandler;
+import modelo.ui.UiCasa;
 import modelo.ui.UiPeca;
 import modelo.ui.decorator.UiPecaBase;
-import modelo.ui.decorator.UiPecaMoldura;
 import modelo.ui.decorator.UiPecaMolduraBorda;
 
 public class TurnoAtkP2 extends TurnoAtaque {
@@ -16,7 +16,6 @@ public class TurnoAtkP2 extends TurnoAtaque {
 		
 		for (ObserverJogo obs : jogo.getObservadores()) {
 			obs.p2Atk();
-			obs.exibirAlerta(gerarAlerta("Player 2 | Turno de Ataque"));
 		}
 		
 		acoesPecas();
@@ -69,13 +68,46 @@ public class TurnoAtkP2 extends TurnoAtaque {
 		EventHandler<Event> evento = new EventHandler<Event>() {
 
 			@Override
-			public void handle(Event event) {
-				jogo.getCi().execute(new AtacarCommand(jogo, uiPeca));		
+			public void handle(Event event) {				
+				jogo.getCi().execute(new AtacarCommand(jogo, uiPeca));
+				
+				for (ObserverJogo obs : jogo.getObservadores()) {
+					UiPecaBase pecaMoldura = new UiPecaMolduraBorda(uiPeca.getPeca(), 80, uiPeca);
+					
+					obs.p1Selecao(pecaMoldura);
+				}
 			}
 			
 		};
 		
 		return evento;
+	}
+	
+	public void ataquesPossiveis(UiPeca uiPeca) {
+		int pecaX = uiPeca.getPeca().getPosicao()[0];
+		int pecaY = uiPeca.getPeca().getPosicao()[1];
+		
+		// Marcando possiveis ataques no eixo horizontal
+		for (int x = (pecaX - uiPeca.getPeca().getAlcance()); x <= (pecaX + uiPeca.getPeca().getAlcance()); x++) {
+			if (x >= 0 && x <= 7) {
+				UiCasa casa = this.jogo.getJogo().getCasasJogo()[x][pecaY];
+				
+				if (this.jogo.temPecaAquiP1(casa)) {
+					casa.trocarEstado();
+				}				
+			}
+		}
+		
+		// Marcando possiveis ataques no eixo vertical
+		for (int y = (pecaY - uiPeca.getPeca().getAlcance()); y <= (pecaY + uiPeca.getPeca().getAlcance()); y++) {
+			if (y >= 0 && y <= 7) {
+				UiCasa casa = this.jogo.getJogo().getCasasJogo()[pecaX][y];
+				
+				if (this.jogo.temPecaAquiP1(casa)) {
+					casa.trocarEstado();
+				}
+			}			
+		}
 	}
 	
 	@Override
@@ -89,7 +121,7 @@ public class TurnoAtkP2 extends TurnoAtaque {
 	}
 
 	public String toString() {
-		return "Player 2 | Ataque";
+		return "Player 2 | Turno de Ataque";
 	}
 	
 }

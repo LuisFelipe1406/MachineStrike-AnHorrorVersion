@@ -17,12 +17,14 @@ controle\ControladorSelecaoPersonagem$2.class
 controle\ControladorSelecaoPersonagem.class
 controle\ControladorJogo$2.class
 modelo\ui\decorator\UiPecaMoldura.class
+controle\TurnoMovP1$2.class
 controle\TurnoMovP1.class
 modelo\ui\UiCasaEstado.class
 controle\observer\ObserverJogo.class
 controle\ControladorSelecaoTabuleiro.class
 controle\adapter\ArquivoTerrenoJson.class
 modelo\pecas\PecaSerraEletrica.class
+controle\visitor\TerrenoVisitor.class
 controle\observer\ObserverSelecaoTabuleiro.class
 controle\TurnoAtkP1$2.class
 modelo\tipos\TipoPeca.class
@@ -45,6 +47,7 @@ controle\ControladorJogo$1.class
 visao\TelaSobreProjeto.class
 modelo\ui\decorator\UiPecaMolduraBorda.class
 controle\TurnoAtkP1.class
+controle\visitor\TerrenosCaminharVisitor.class
 visao\TelaInicial.class
 controle\visitor\PecasGetSelecionadasVisitor.class
 controle\ControladorSobreProjeto.class
@@ -87,7 +90,6 @@ controle\ControladorSelecaoPersonagem$4.class
 modelo\pecas\PecaJigsaw.class
 controle\command\Command.class
 modelo\tipos\TipoAtirador.class
-controle\ControladorJogo$4.class
 modelo\ui\UiCasaSelecionada.class
 controle\TurnoFimDeJogo.class
 modelo\Jogador1.class
@@ -101,6 +103,7 @@ controle\ControladorSelecaoPersonagem$3.class
 controle\TurnoAtkP2$2.class
 visao\TelaJogo.class
 modelo\pecas\PecaJason.class
+controle\visitor\JogadorAtualizaVidaVisitor.class
 modelo\tabuleiro\TabuleiroArquivo.class
 modelo\tabuleiro\terreno\TerrenoAbismo.class
 controle\ControladorSelecaoTabuleiro$2.class

@@ -153,10 +153,6 @@ public abstract class Peca {
 		return this.getTipo() + " - " + this.getNome();
 	}
 	
-	public void atacar(Peca peca) {
-		//Ataque + bônus
-	}
-	
 	public abstract void accept(PecaVisitor visitor);
 	
 }

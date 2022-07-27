@@ -2,6 +2,7 @@ package modelo.tabuleiro.terreno;
 
 import java.io.File;
 
+import controle.visitor.TerrenoVisitor;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import modelo.pecas.Peca;
@@ -16,10 +17,8 @@ public class TerrenoPantano extends Terreno {
 	
 	//Ao estar no pântano o jogador perde seu movimento e recebe -1 de ataque
 	@Override
-	public void pecaAqui(Peca peca) {
-		peca.setMovimentoLiberado(false);
-		
-		peca.setBonus(-1);
+	public void accept(TerrenoVisitor visitor) {
+		visitor.visitarPantano(this);
 	}
 	
 }

@@ -1,13 +1,10 @@
 package controle;
 
-import controle.command.MoverCommand;
 import controle.observer.ObserverJogo;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import modelo.ui.UiCasa;
 import modelo.ui.UiPeca;
-import modelo.ui.decorator.UiPecaBase;
-import modelo.ui.decorator.UiPecaMolduraBorda;
 
 public class TurnoFimDeJogo extends TurnoEstado {
 
@@ -16,7 +13,6 @@ public class TurnoFimDeJogo extends TurnoEstado {
 		
 		for (ObserverJogo obs : jogo.getObservadores()) {
 			obs.fimDeJogo();
-			obs.exibirAlerta(gerarAlerta("Fim de Jogo"));
 		}
 		
 		acoesPecas();
@@ -70,12 +66,16 @@ public class TurnoFimDeJogo extends TurnoEstado {
 
 	@Override
 	public void proxEstado() {
-		this.jogo.setEstado(new TurnoMovP1(jogo));
+		
 	}
 
 	@Override
 	public void pularAVez() {
-		this.jogo.setEstado(new TurnoMovP1(jogo));
+		
+	}
+	
+	public String toString() {
+		return "Fim de Jogo";
 	}
 	
 	

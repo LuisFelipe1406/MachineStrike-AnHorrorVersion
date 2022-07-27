@@ -2,6 +2,7 @@ package modelo.tabuleiro.terreno;
 
 import java.io.File;
 
+import controle.visitor.TerrenoVisitor;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import modelo.pecas.Peca;
@@ -16,8 +17,8 @@ public class TerrenoGrama extends Terreno {
 
 	//Ao estar na grama o jogador não é afetado
 	@Override
-	public void pecaAqui(Peca peca) {
-		peca.setBonus(0);
+	public void accept(TerrenoVisitor visitor) {
+		visitor.visitarGrama(this);
 	}
 	
 }

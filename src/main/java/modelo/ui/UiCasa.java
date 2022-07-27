@@ -14,6 +14,7 @@ public class UiCasa extends Rectangle {
 	private UiCasaEstado estado;
 	
 	public UiCasa(Terreno terreno, int x, int y, int telaSize) {
+		this.terreno = terreno;
 		this.posicao = new int[] {x, y};
 		this.telaSize = telaSize;
 		this.estado = new UiCasaNaoSelecionada(this);

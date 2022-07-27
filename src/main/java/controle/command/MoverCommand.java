@@ -2,6 +2,9 @@ package controle.command;
 
 import controle.ControladorJogo;
 import controle.Jogo;
+import controle.visitor.TerrenosCaminharVisitor;
+import modelo.Jogador;
+import modelo.pecas.Peca;
 import modelo.ui.UiCasa;
 import modelo.ui.UiCasaNaoSelecionada;
 import modelo.ui.UiCasaSelecionada;
@@ -23,16 +26,30 @@ public class MoverCommand extends Command {
 	}
 	
 	@Override
-	public void execute() {
+	public void execute() {		
+		//Verica se ha uma peca e se a casa esta entre as possibilidades de movimento
 		if (this.peca != null && this.casa.getEstado().getClass() == UiCasaSelecionada.class && !temPecaAqui(casa)) {
-			this.posAtual = peca.getPeca().getPosicao();
+			if (this.peca.getPeca().getMovimentoLiberado()) {
+				//Guarda a posicao atual para usar no undo
+				this.posAtual = peca.getPeca().getPosicao();
+				
+				//Move a peca
+				this.peca.getPeca().setPosicao(this.casa.getPosicao());
+				this.peca.atualizarPosicao();
+				
+				//Aplica efeito do terreno na peca
+				TerrenosCaminharVisitor caminharVisitor = new TerrenosCaminharVisitor(this.peca.getPeca());
+				this.casa.getTerreno().accept(caminharVisitor);
+			} else {
+				//Se tentar movimentar e nao conseguir ira liberar o movimento para a proxima jogada
+				this.peca.getPeca().setMovimentoLiberado(true);
+			}
 			
-			this.peca.getPeca().setPosicao(this.casa.getPosicao());
-			this.peca.atualizarPosicao();
-
+			//Limpa as pecas e casas
 			limparPecas();
 			limparCasas();
 			
+			//Contador de movimento para mudanca de turno
 			this.jogo.setContMov(this.jogo.getContMov() + 1);
 			
 			if (this.jogo.getContMov() == 2) {
@@ -70,9 +87,11 @@ public class MoverCommand extends Command {
 	}
 	
 	public boolean temPecaAqui(UiCasa casa) {
-		for (UiPeca uiPeca : this.jogo.getJogo().getPersonagensJogo()) {			
-			if (uiPeca.getPeca().getPosicao()[0] == casa.getPosicao()[0] && uiPeca.getPeca().getPosicao()[1] == casa.getPosicao()[1]) {
-				return true;
+		for (Jogador j : this.jogo.getJogo().getJogadores()) {
+			for (Peca peca : j.getPecas()) {			
+				if (peca.getPosicao()[0] == casa.getPosicao()[0] && peca.getPosicao()[1] == casa.getPosicao()[1]) {
+					return true;
+				}
 			}
 		}
 		

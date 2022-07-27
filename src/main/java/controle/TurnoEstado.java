@@ -1,5 +1,6 @@
 package controle;
 
+import controle.observer.ObserverJogo;
 import javafx.scene.control.Alert;
 
 public abstract class TurnoEstado {
@@ -8,6 +9,10 @@ public abstract class TurnoEstado {
 	
 	public TurnoEstado(ControladorJogo jogo) {
 		this.jogo = jogo;
+		
+		for (ObserverJogo obs : jogo.getObservadores()) {
+			obs.exibirAlerta(gerarAlerta(this.toString()));
+		}
 	}
 	
 	public abstract void proxEstado();
