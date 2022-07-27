@@ -43,6 +43,8 @@ public class MoverCommand extends Command {
 			} else {
 				//Se tentar movimentar e nao conseguir ira liberar o movimento para a proxima jogada
 				this.peca.getPeca().setMovimentoLiberado(true);
+				
+				this.jogo.gerarAlerta("Gastou movimento para sair do terreno que o prendia.");
 			}
 			
 			//Limpa as pecas e casas

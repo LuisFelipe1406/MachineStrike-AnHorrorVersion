@@ -58,9 +58,10 @@ public class JogadorAtualizaVidaVisitor implements JogadorVisitor {
 		this.jogo.setEstado(new TurnoFimDeJogo(this.jogo));
 		
 		for (ObserverJogo obs : this.jogo.getObservadores()) {
-			obs.fimDeJogo();
-			obs.exibirAlerta(this.jogo.gerarAlerta(ganhador.getNome() + " Ganhou!"));				
+			obs.fimDeJogo();				
 		}
+		
+		this.jogo.gerarAlerta(ganhador.getNome() + " Ganhou!");
 	}
 	
 	

@@ -273,12 +273,14 @@ public class ControladorJogo {
 		return this.ci;
 	}
 	
-	public Alert gerarAlerta(String texto) {
+	public void gerarAlerta(String texto) {
 		Alert dialogoInfo = new Alert(Alert.AlertType.INFORMATION);
         dialogoInfo.setTitle("Instrução");
         dialogoInfo.setContentText(texto);
         
-        return dialogoInfo;
+		for (ObserverJogo obs : this.getObservadores()) {
+			obs.exibirAlerta(dialogoInfo);
+		}
 	}
 	
 }

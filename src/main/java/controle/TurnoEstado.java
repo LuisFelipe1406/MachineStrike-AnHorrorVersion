@@ -10,21 +10,21 @@ public abstract class TurnoEstado {
 	public TurnoEstado(ControladorJogo jogo) {
 		this.jogo = jogo;
 		
-		for (ObserverJogo obs : jogo.getObservadores()) {
-			obs.exibirAlerta(gerarAlerta(this.toString()));
-		}
+		gerarAlerta(this.toString());
 	}
 	
 	public abstract void proxEstado();
 	
 	public abstract void pularAVez();
 	
-	protected Alert gerarAlerta(String texto) {
+	protected void gerarAlerta(String texto) {
 		Alert dialogoInfo = new Alert(Alert.AlertType.INFORMATION);
         dialogoInfo.setTitle("Instrução");
         dialogoInfo.setContentText(texto);
         
-        return dialogoInfo;
+		for (ObserverJogo obs : jogo.getObservadores()) {
+			obs.exibirAlerta(dialogoInfo);
+		}
 	}
 
 }
