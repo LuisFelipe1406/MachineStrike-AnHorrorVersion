@@ -8,6 +8,7 @@ import modelo.ui.UiCasa;
 import modelo.ui.UiPeca;
 import modelo.ui.decorator.UiPecaBase;
 import modelo.ui.decorator.UiPecaMolduraBorda;
+import modelo.ui.decorator.builder.MolduraBuilder;
 
 public class TurnoAtkP2 extends TurnoAtaque {
 

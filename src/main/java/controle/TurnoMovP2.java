@@ -7,6 +7,7 @@ import modelo.ui.UiPeca;
 import modelo.ui.decorator.UiPecaBase;
 import modelo.ui.decorator.UiPecaMoldura;
 import modelo.ui.decorator.UiPecaMolduraBorda;
+import modelo.ui.decorator.builder.MolduraBuilder;
 
 public class TurnoMovP2 extends TurnoMovimento {
 	

@@ -18,6 +18,7 @@ import modelo.*;
 import modelo.pecas.*;
 import modelo.ui.*;
 import modelo.ui.decorator.UiPecaMoldura;
+import modelo.ui.decorator.builder.MolduraBuilder;
 import modelo.ui.decorator.UiPecaBase;
 
 public class ControladorSelecaoPersonagem {
@@ -66,8 +67,8 @@ public class ControladorSelecaoPersonagem {
 		int marginBottom = 5;
 		
 		for (int i = 0; i < gerarPersonagens().size(); i++) {
-			Peca personagem = gerarPersonagens().get(i);
-			UiPecaBase uiSelecao = new UiPecaMoldura(personagem, this.telaSelecao.getSize(), new UiPeca(personagem, this.telaSelecao.getSize()));
+			Peca personagem = gerarPersonagens().get(i); 
+			UiPecaBase uiSelecao = new MolduraBuilder().peca(personagem).telaSize(this.telaSelecao.getSize()).pecaBase(new UiPeca(personagem, this.telaSelecao.getSize())).build();
 			
 			//Adiciona o nó a lista de personagens
 			this.jogo.addPersonagemSelecao(uiSelecao);

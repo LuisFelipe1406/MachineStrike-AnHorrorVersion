@@ -14,6 +14,7 @@ C:\Users\Luis\Documents\Faculdade\2022\22-01\PPR\Eclipse\MachineStrike\src\main\
 C:\Users\Luis\Documents\Faculdade\2022\22-01\PPR\Eclipse\MachineStrike\src\main\java\modelo\pecas\PecaSerraEletrica.java
 C:\Users\Luis\Documents\Faculdade\2022\22-01\PPR\Eclipse\MachineStrike\src\main\java\modelo\tipos\TipoVoador.java
 C:\Users\Luis\Documents\Faculdade\2022\22-01\PPR\Eclipse\MachineStrike\src\main\java\controle\visitor\TerrenosCaminharVisitor.java
+C:\Users\Luis\Documents\Faculdade\2022\22-01\PPR\Eclipse\MachineStrike\src\main\java\modelo\ui\decorator\builder\BuildMolduraPadrao.java
 C:\Users\Luis\Documents\Faculdade\2022\22-01\PPR\Eclipse\MachineStrike\src\main\java\modelo\pecas\PecaMichaelMyers.java
 C:\Users\Luis\Documents\Faculdade\2022\22-01\PPR\Eclipse\MachineStrike\src\main\java\modelo\pecas\PecaEstadoNaoSelecionada.java
 C:\Users\Luis\Documents\Faculdade\2022\22-01\PPR\Eclipse\MachineStrike\src\main\java\modelo\pecas\PecaMichaelJackson.java
@@ -27,6 +28,7 @@ C:\Users\Luis\Documents\Faculdade\2022\22-01\PPR\Eclipse\MachineStrike\src\main\
 C:\Users\Luis\Documents\Faculdade\2022\22-01\PPR\Eclipse\MachineStrike\src\main\java\controle\visitor\JogadorAtualizaVidaVisitor.java
 C:\Users\Luis\Documents\Faculdade\2022\22-01\PPR\Eclipse\MachineStrike\src\main\java\controle\TurnoEstado.java
 C:\Users\Luis\Documents\Faculdade\2022\22-01\PPR\Eclipse\MachineStrike\src\main\java\controle\factory\AbstractTabuleiroFactory.java
+C:\Users\Luis\Documents\Faculdade\2022\22-01\PPR\Eclipse\MachineStrike\src\main\java\modelo\ui\decorator\builder\BuildMoldura.java
 C:\Users\Luis\Documents\Faculdade\2022\22-01\PPR\Eclipse\MachineStrike\src\main\java\controle\ControladorSelecaoPersonagem.java
 C:\Users\Luis\Documents\Faculdade\2022\22-01\PPR\Eclipse\MachineStrike\src\main\java\modelo\tabuleiro\terreno\TerrenoFloresta.java
 C:\Users\Luis\Documents\Faculdade\2022\22-01\PPR\Eclipse\MachineStrike\src\main\java\controle\adapter\ArquivoTerrenoTxt.java
@@ -35,6 +37,7 @@ C:\Users\Luis\Documents\Faculdade\2022\22-01\PPR\Eclipse\MachineStrike\src\main\
 C:\Users\Luis\Documents\Faculdade\2022\22-01\PPR\Eclipse\MachineStrike\src\main\java\modelo\tipos\TipoCorredor.java
 C:\Users\Luis\Documents\Faculdade\2022\22-01\PPR\Eclipse\MachineStrike\src\main\java\visao\TelaJogo.java
 C:\Users\Luis\Documents\Faculdade\2022\22-01\PPR\Eclipse\MachineStrike\src\main\java\controle\visitor\JogadorPreparaPecasVisitor.java
+C:\Users\Luis\Documents\Faculdade\2022\22-01\PPR\Eclipse\MachineStrike\src\main\java\modelo\ui\decorator\builder\MolduraBuilder.java
 C:\Users\Luis\Documents\Faculdade\2022\22-01\PPR\Eclipse\MachineStrike\src\main\java\controle\ControladorJogo.java
 C:\Users\Luis\Documents\Faculdade\2022\22-01\PPR\Eclipse\MachineStrike\src\main\java\controle\TurnoFimDeJogo.java
 C:\Users\Luis\Documents\Faculdade\2022\22-01\PPR\Eclipse\MachineStrike\src\main\java\modelo\pecas\PecaHallowen.java

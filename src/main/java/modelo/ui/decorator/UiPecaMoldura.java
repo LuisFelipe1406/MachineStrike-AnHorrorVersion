@@ -6,11 +6,20 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import modelo.pecas.Peca;
+import modelo.ui.decorator.builder.MolduraBuilder;
 
 public class UiPecaMoldura extends UiPecaDecorator {
 
-	public UiPecaMoldura(Peca peca, int telaSize, UiPecaBase pecaBase) {
-		super(peca, telaSize, pecaBase);
+	private Peca peca;
+	private int telaSize;
+	private UiPecaBase pecaBase;
+	
+	public UiPecaMoldura(MolduraBuilder builder) {
+		super(builder.peca, builder.telaSize, builder.pecaBase);
+		
+		this.peca = builder.peca;
+		this.telaSize = builder.telaSize;
+		this.pecaBase = builder.pecaBase;
 		
 		criarMoldura();
 	}
